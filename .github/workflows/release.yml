@@ -1,0 +1,30 @@
+name: KCB Psy release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version, z. B. 0.1.0
+        required: true
+        default: 0.1.0
+      dry_run:
+        description: Nur bauen und packen (kein Draft-Release)
+        type: boolean
+        default: true
+
+jobs:
+  vst:
+    # mpc-vst-plugins auf genau den Commit gepinnt, gegen den der Port getestet wurde (beide Stellen gleich halten)
+    uses: sd88me/mpc-vst-plugins/.github/workflows/vst-release.yml@f373ae9c29ab1ad977c7ac1eaf59afa808db91f5
+    permissions: { contents: write }
+    with:
+      tag: kcb-psy-vst-v${{ inputs.version }}
+      version: ${{ inputs.version }}
+      tools_ref: f373ae9c29ab1ad977c7ac1eaf59afa808db91f5
+      vst_dir: vst
+      build: vst/build.sh
+      host_test: '"$MPC_VST/tools/test_port.sh" vst/vst.json'
+      about: Psytrance Kick + Bass aus einer Engine, phasengenau gekoppelt (Sweep-Lock).
+      plugin_id: kcb-psy
+      license: MIT
+      dry_run: ${{ inputs.dry_run }}
