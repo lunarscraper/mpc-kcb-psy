@@ -68,3 +68,4 @@ make test                                              # Engine
 - MIDI-Noten wirken an der nächsten 128-Sample-Blockgrenze (≤ 2,9 ms). Die Kopplung Kick ↔ Bass
   bleibt davon unberührt, sie entsteht intern samplegenau.
 - CPU auf der Force noch nicht gemessen (`tools/bench.sh`); danach `vst/bench.txt` committen.
+- Entwickelt mit Unterstützung von Claude (Anthropic)
