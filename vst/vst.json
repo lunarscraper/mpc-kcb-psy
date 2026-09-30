@@ -1,0 +1,29 @@
+{
+  "name": "KCB Psy",
+  "vendor": "lunarscraper",
+  "uid": "KCBp",
+  "version": 1000,
+  "so": "kcb_psy.so",
+  "params": "params.json",
+  "layout": "layout.conf",
+  "defines": {
+    "HAS_LFO_BPM": 1
+  },
+  "build": {
+    "root": "..",
+    "sources": [
+      "src/kcb_engine.c",
+      "src/mpc_adapter.c"
+    ],
+    "cflags": [
+      "-Isrc",
+      "-I/mv/wrapper",
+      "-Impc-vst-plugins/wrapper",
+      "-I../mpc-vst-plugins/wrapper"
+    ],
+    "libs": [
+      "-lm"
+    ]
+  },
+  "title_font": "fonts/TitilliumWeb-Bold.ttf"
+}

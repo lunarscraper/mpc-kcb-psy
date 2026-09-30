@@ -1,0 +1,29 @@
+{
+  "name": "KCB Psy",
+  "params": [
+    {"key": "pattern",     "name": "Pattern",     "options": ["KBBB", "K-BB", "K-B-", "Triole"], "default": 0},
+    {"key": "root",        "name": "Tonart",      "options": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"], "default": 5},
+    {"key": "octave",      "name": "Oktave",      "options": ["0", "+1"], "default": 0},
+    {"key": "key_follow",  "name": "Key Follow",  "options": ["Aus", "An"], "default": 0},
+    {"key": "lock",        "name": "Phase Lock",  "options": ["Sweep", "Cut"], "default": 0},
+    {"key": "gap",         "name": "Gap",         "min": 0,   "max": 10,  "unit": "ms", "default": 0},
+    {"key": "sync",        "name": "Sync",        "options": ["Host", "Intern"], "default": 0},
+    {"key": "bpm",         "name": "Tempo",       "min": 100, "max": 180, "unit": "BPM", "default": 145, "display": "int"},
+    {"key": "kick_pitch",  "name": "Pitch",       "min": 60,  "max": 400, "unit": "Hz", "default": 220, "display": "int"},
+    {"key": "kick_sweep",  "name": "Sweep",       "min": 5,   "max": 80,  "unit": "ms", "default": 22},
+    {"key": "kick_decay",  "name": "Decay",       "min": 50,  "max": 400, "unit": "ms", "default": 180, "display": "int"},
+    {"key": "kick_click",  "name": "Click",       "min": 0,   "max": 100, "unit": "%",  "default": 50, "display": "int"},
+    {"key": "kick_drive",  "name": "Drive",       "min": 0,   "max": 100, "unit": "%",  "default": 30, "display": "int"},
+    {"key": "kick_level",  "name": "Kick Lvl",    "min": 0,   "max": 100, "unit": "%",  "default": 90, "display": "int"},
+    {"key": "bass_cutoff", "name": "Cutoff",      "min": 0,   "max": 100, "unit": "%",  "default": 35, "display": "int"},
+    {"key": "bass_reso",   "name": "Reso",        "min": 0,   "max": 100, "unit": "%",  "default": 30, "display": "int"},
+    {"key": "bass_envmod", "name": "Env Mod",     "min": 0,   "max": 100, "unit": "%",  "default": 50, "display": "int"},
+    {"key": "bass_decay",  "name": "Decay",       "min": 20,  "max": 200, "unit": "ms", "default": 70, "display": "int"},
+    {"key": "bass_level",  "name": "Bass Lvl",    "min": 0,   "max": 100, "unit": "%",  "default": 70, "display": "int"}
+  ],
+  "sections": [
+    {"label": "GROOVE", "keys": ["pattern", "root", "octave", "key_follow", "lock", "gap", "sync", "bpm"]},
+    {"label": "KICK",   "keys": ["kick_pitch", "kick_sweep", "kick_decay", "kick_click", "kick_drive", "kick_level"]},
+    {"label": "BASS",   "keys": ["bass_cutoff", "bass_reso", "bass_envmod", "bass_decay", "bass_level"]}
+  ]
+}
