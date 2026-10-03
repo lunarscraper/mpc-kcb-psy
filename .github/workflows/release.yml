@@ -23,7 +23,7 @@ jobs:
       tools_ref: f373ae9c29ab1ad977c7ac1eaf59afa808db91f5
       vst_dir: vst
       build: bash vst/build.sh
-      host_test: 'bash "$MPC_VST/tools/test_port.sh" vst/vst.json'
+      host_test: bash vst/test.sh
       about: Psytrance Kick + Bass aus einer Engine, phasengenau gekoppelt (Sweep-Lock).
       plugin_id: kcb-psy
       license: MIT
