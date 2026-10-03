@@ -26,6 +26,8 @@ jobs:
           repository: sd88me/mpc-vst-plugins
           ref: f373ae9c29ab1ad977c7ac1eaf59afa808db91f5
           path: mpc-vst-plugins
-      - name: Wrapper-Hosttest (x86, ASan/UBSan)
+      - name: Wrapper-Hosttest + Timing-Test
         working-directory: port
-        run: ../mpc-vst-plugins/tools/test_port.sh vst/vst.json
+        env:
+          MPC_VST: ${{ github.workspace }}/mpc-vst-plugins 
+        run: bash vst/vst.text
