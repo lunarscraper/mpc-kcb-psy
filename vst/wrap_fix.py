@@ -8,8 +8,8 @@ late against the grid. MPC passes each event's position inside the block (VstMid
 this patch keeps it, renders the block up to that frame, applies the event, renders the rest.
 No added latency; effects (PLUG_EFFECT) are untouched.
 
-Diagnostics: the first 300 note-ons are logged to /tmp/kcb_delta.log as "delta=<frames> note=<n>".
-If every delta is 0, MPC itself quantises to blocks and the patch changes nothing (but costs nothing).
+Verified on a Force (2026-10): sequenced notes arrive with deltaFrames 0..127, live pad notes with 0.
+Diagnostics: build with -DKCB_DELTA_LOG to log the first 300 note-ons to /tmp/kcb_delta.log.
 
 Usage: wrap_fix.py <mpc-vst-plugins copy>. Fails loudly if upstream changed the patched lines."""
 import os, sys
@@ -26,11 +26,15 @@ fixes = [
     # 2. log + sub-block renderer, before render_frames()
     ("static void render_frames(wrap_t *w, float **out, int32_t n, int accumulate) {\n",
      "static void delta_log(int32_t delta, const unsigned char *m) {\n"
+     "#ifndef KCB_DELTA_LOG\n"
+     "    (void)delta; (void)m;\n"
+     "#else\n"
      "    static FILE *f; static int count;\n"
      "    if ((m[0] & 0xF0) != 0x90 || !m[2] || count >= 300) return;\n"
      "    if (!f && !(f = fopen(\"/tmp/kcb_delta.log\", \"a\"))) return;\n"
      "    fprintf(f, \"delta=%d note=%d\\n\", (int)delta, m[1]);\n"
      "    if (++count % 8 == 0 || count == 300) fflush(f);\n"
+     "#endif\n"
      "}\n"
      "/* Render one engine block starting at host frame `base` of this processReplacing() call, applying\n"
      " * queued events at their own frame: render up to the event, apply it, continue. */\n"
